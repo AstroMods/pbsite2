@@ -1,0 +1,272 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Redirecting to Discord...</title>
+
+    <meta name="description" content="Redirecting you to our Discord server.">
+
+    <!-- Instant redirect -->
+    <meta http-equiv="refresh" content="5;url=https://discord.gg/YOUR-INVITE">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --background: #08090d;
+            --card: rgba(255, 255, 255, 0.045);
+            --border: rgba(255, 255, 255, 0.09);
+            --text: #ffffff;
+            --muted: #9297a3;
+            --discord: #5865f2;
+        }
+
+        body {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 24px;
+
+            font-family: "Inter", sans-serif;
+            color: var(--text);
+
+            background:
+                radial-gradient(
+                    circle at 50% -15%,
+                    rgba(88, 101, 242, .20),
+                    transparent 45%
+                ),
+                var(--background);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 460px;
+            text-align: center;
+        }
+
+        .card {
+            padding: 42px 35px;
+
+            background: var(--card);
+
+            border: 1px solid var(--border);
+            border-radius: 20px;
+
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+
+            box-shadow:
+                0 30px 80px rgba(0, 0, 0, .45);
+
+            animation: fadeIn .5s ease forwards;
+        }
+
+        .icon {
+            width: 64px;
+            height: 64px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin: 0 auto 24px;
+
+            border-radius: 17px;
+
+            background: var(--discord);
+
+            box-shadow:
+                0 15px 40px rgba(88, 101, 242, .28);
+
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        h1 {
+            margin-bottom: 12px;
+
+            font-size: 27px;
+            letter-spacing: -1px;
+        }
+
+        .description {
+            margin: 0 auto 28px;
+
+            color: var(--muted);
+
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .loader {
+            width: 42px;
+            height: 42px;
+
+            margin: 0 auto 18px;
+
+            border: 3px solid rgba(255,255,255,.08);
+            border-top-color: var(--discord);
+
+            border-radius: 50%;
+
+            animation: spin .8s linear infinite;
+        }
+
+        .redirect-text {
+            color: #737883;
+
+            font-size: 11px;
+        }
+
+        .redirect-text span {
+            color: #bfc2ca;
+            font-weight: 600;
+        }
+
+        .fallback {
+            margin-top: 25px;
+
+            padding-top: 20px;
+
+            border-top: 1px solid var(--border);
+
+            color: #626771;
+
+            font-size: 10px;
+            line-height: 1.6;
+        }
+
+        .fallback a {
+            color: #8991ff;
+            text-decoration: none;
+        }
+
+        .fallback a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            margin-top: 18px;
+
+            color: #454952;
+
+            font-size: 9px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .card {
+                padding: 35px 25px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="container">
+
+        <section class="card">
+
+            <div class="icon">
+                ♫
+            </div>
+
+            <div class="loader"></div>
+
+            <h1>Redirecting to Discord</h1>
+
+            <p class="description">
+                Please wait while we redirect you to our Discord
+                server.
+            </p>
+
+            <div class="redirect-text">
+                Redirecting in <span id="countdown">5</span> seconds...
+            </div>
+
+            <div class="fallback">
+                Not redirected automatically?
+                <a
+                    href="https://discord.gg/dg6hjDF67u"
+                >
+                    Join Discord manually
+                </a>
+            </div>
+
+        </section>
+
+        <footer>
+            © 2026 Palm Beach Project
+        </footer>
+
+    </main>
+
+    <script>
+        const discordURL = "https://discord.gg/dg6hjDF67u";
+
+        let seconds = 5;
+
+        const countdown =
+            document.getElementById("countdown");
+
+        const timer = setInterval(() => {
+
+            seconds--;
+
+            countdown.textContent = seconds;
+
+            if (seconds <= 0) {
+
+                clearInterval(timer);
+
+                window.location.href = discordURL;
+
+            }
+
+        }, 1000);
+    </script>
+
+</body>
+</html>
+```

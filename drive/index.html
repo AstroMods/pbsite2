@@ -1,0 +1,284 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Private CDN</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --background: #08090b;
+            --card: rgba(255, 255, 255, 0.045);
+            --border: rgba(255, 255, 255, 0.09);
+            --text: #ffffff;
+            --muted: #8b8f98;
+            --green: #4ade80;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 25px;
+
+            font-family: "Inter", sans-serif;
+            color: var(--text);
+
+            background:
+                radial-gradient(
+                    circle at 50% -20%,
+                    rgba(255,255,255,.08),
+                    transparent 45%
+                ),
+                var(--background);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+        }
+
+        .card {
+            padding: 42px;
+
+            background: var(--card);
+
+            border: 1px solid var(--border);
+            border-radius: 18px;
+
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+
+            box-shadow:
+                0 30px 80px rgba(0,0,0,.35);
+        }
+
+        .icon {
+            width: 52px;
+            height: 52px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-bottom: 24px;
+
+            border-radius: 14px;
+
+            background: rgba(255,255,255,.07);
+            border: 1px solid var(--border);
+
+            font-size: 21px;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            margin-bottom: 18px;
+
+            padding: 7px 11px;
+
+            border-radius: 100px;
+
+            background: rgba(74,222,128,.07);
+            border: 1px solid rgba(74,222,128,.13);
+
+            color: #9ae6b4;
+
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+
+            border-radius: 50%;
+
+            background: var(--green);
+            box-shadow: 0 0 10px var(--green);
+        }
+
+        h1 {
+            font-size: 36px;
+            letter-spacing: -1.5px;
+            margin-bottom: 12px;
+        }
+
+        .description {
+            max-width: 500px;
+
+            color: var(--muted);
+
+            font-size: 14px;
+            line-height: 1.7;
+
+            margin-bottom: 32px;
+        }
+
+        .info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 10px;
+
+            margin-bottom: 28px;
+        }
+
+        .info-box {
+            padding: 17px;
+
+            background: rgba(255,255,255,.035);
+
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #676c76;
+
+            font-size: 10px;
+            font-weight: 600;
+
+            text-transform: uppercase;
+            letter-spacing: .8px;
+        }
+
+        .value {
+            color: #e8e9eb;
+
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .access {
+            padding: 16px 18px;
+
+            background: rgba(255,255,255,.025);
+
+            border: 1px solid var(--border);
+            border-radius: 12px;
+
+            color: var(--muted);
+
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .access strong {
+            color: #fff;
+        }
+
+        footer {
+            margin-top: 20px;
+
+            text-align: center;
+
+            color: #4e525a;
+
+            font-size: 10px;
+        }
+
+        @media (max-width: 550px) {
+
+            .card {
+                padding: 28px;
+            }
+
+            h1 {
+                font-size: 29px;
+            }
+
+            .info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="container">
+
+        <section class="card">
+
+            <div class="icon">
+                ◆
+            </div>
+
+            <div class="status">
+                <span class="status-dot"></span>
+                Operational
+            </div>
+
+            <h1>Private CDN</h1>
+
+            <p class="description">
+                This is a private content delivery network.
+                Resources hosted on this network are intended for
+                authorized applications and services only.
+            </p>
+
+            <div class="info">
+
+                <div class="info-box">
+                    <span class="label">Network</span>
+                    <span class="value">Private CDN</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="label">Status</span>
+                    <span class="value">Operational</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="label">Access</span>
+                    <span class="value">Restricted</span>
+                </div>
+
+                <div class="info-box">
+                    <span class="label">Protocol</span>
+                    <span class="value">HTTPS</span>
+                </div>
+
+            </div>
+
+            <div class="access">
+                <strong>Restricted Access</strong><br>
+                This endpoint does not provide public directory
+                browsing. If you require access to hosted resources,
+                please use an authorized endpoint or contact the
+                network administrator.
+            </div>
+
+        </section>
+
+        <footer>
+            © 2026 Private CDN · All rights reserved
+        </footer>
+
+    </main>
+
+</body>
+</html>
+```
