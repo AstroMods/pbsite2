@@ -1,0 +1,103 @@
+/* ==============================
+   MOBILE MENU
+============================== */
+
+.mobile-menu {
+    display: none;
+
+    border: 0;
+    background: transparent;
+
+    color: #ffffff;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    padding: 8px;
+}
+
+
+/* ==============================
+   NAVBAR SCROLL
+============================== */
+
+.navbar {
+    transition:
+        background .25s ease,
+        box-shadow .25s ease,
+        padding .25s ease;
+}
+
+.navbar-scrolled {
+    background: rgba(4, 15, 27, .98);
+    box-shadow: 0 8px 30px rgba(0,0,0,.25);
+}
+
+
+/* ==============================
+   SCROLL ANIMATION
+============================== */
+
+.scroll-hidden {
+    opacity: 0;
+    transform: translateY(25px);
+
+    transition:
+        opacity .6s ease,
+        transform .6s ease;
+}
+
+.scroll-hidden.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ==============================
+   MOBILE
+============================== */
+
+@media (max-width: 768px) {
+
+    .mobile-menu {
+        display: block;
+    }
+
+
+    .navbar {
+        position: relative;
+
+        flex-wrap: wrap;
+    }
+
+
+    .navbar nav {
+        display: none;
+
+        width: 100%;
+
+        flex-direction: column;
+
+        padding: 15px 0;
+
+        border-top: 1px solid rgba(255,255,255,.1);
+
+        margin-top: 12px;
+    }
+
+
+    .navbar nav.mobile-open {
+        display: flex;
+    }
+
+
+    .navbar nav a {
+        width: 100%;
+
+        padding: 12px 10px;
+
+        text-align: center;
+    }
+
+}
