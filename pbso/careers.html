@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Careers | Palm Beach County Sheriff's Office</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+<header class="navbar">
+
+    <a href="index.html" class="brand">
+
+        <div class="brand-logo"></div>
+
+        <div class="brand-text">
+            <strong>PALM BEACH COUNTY</strong>
+            <span>SHERIFF'S OFFICE</span>
+        </div>
+
+    </a>
+
+    <nav>
+
+        <a href="index.html">Home</a>
+
+        <a href="about.html">About</a>
+
+        <a href="careers.html" class="active">
+            Careers
+        </a>
+
+        <a href="index.html#contact">
+            Contact
+        </a>
+
+    </nav>
+
+</header>
+
+
+<section class="page-hero">
+
+    <div>
+
+        <span>CAREERS</span>
+
+        <h1>Join Our Team</h1>
+
+        <p>
+            Begin your career in public service.
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="application-section">
+
+    <div class="application-header">
+
+        <span>EMPLOYMENT APPLICATION</span>
+
+        <h2>Apply to the Sheriff's Office</h2>
+
+        <p>
+            Complete the application below. All information
+            provided will be reviewed by the department.
+        </p>
+
+    </div>
+
+
+    <form id="applicationForm">
+
+
+        <div class="form-section">
+
+            <h3>Personal Information</h3>
+
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+                        First Name
+                    </label>
+
+                    <input
+                        type="text"
+                        name="firstName"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Last Name
+                    </label>
+
+                    <input
+                        type="text"
+                        name="lastName"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Discord Username
+                    </label>
+
+                    <input
+                        type="text"
+                        name="discord"
+                        placeholder="username"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Age
+                    </label>
+
+                    <input
+                        type="number"
+                        name="age"
+                        min="13"
+                        max="100"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="form-section">
+
+            <h3>Application Information</h3>
+
+
+            <div class="form-grid">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Position
+                    </label>
+
+                    <select name="position" required>
+
+                        <option value="">
+                            Select a position
+                        </option>
+
+                        <option>
+                            Deputy Sheriff
+                        </option>
+
+                        <option>
+                            Communications
+                        </option>
+
+                        <option>
+                            Corrections
+                        </option>
+
+                        <option>
+                            Civilian
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Previous FiveM RP Experience
+                    </label>
+
+                    <select name="experience" required>
+
+                        <option value="">
+                            Select
+                        </option>
+
+                        <option>
+                            None
+                        </option>
+
+                        <option>
+                            Less than 1 year
+                        </option>
+
+                        <option>
+                            1-3 years
+                        </option>
+
+                        <option>
+                            3+ years
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Why do you want to join?
+                </label>
+
+                <textarea
+                    name="reason"
+                    rows="6"
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    What makes you a good candidate?
+                </label>
+
+                <textarea
+                    name="qualities"
+                    rows="6"
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Previous Department Experience
+                </label>
+
+                <textarea
+                    name="previous"
+                    rows="5"
+                    placeholder="List any previous departments or RP communities."
+                ></textarea>
+
+            </div>
+
+        </div>
+
+
+        <div class="form-section">
+
+            <h3>Agreement</h3>
+
+
+            <label class="checkbox">
+
+                <input
+                    type="checkbox"
+                    name="agreement"
+                    required
+                >
+
+                <span>
+                    I certify that the information provided is
+                    accurate and understand that this application
+                    is for a FiveM roleplay community.
+                </span>
+
+            </label>
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="btn btn-gold submit-button"
+        >
+            Submit Application
+        </button>
+
+
+    </form>
+
+
+    <div
+        id="applicationSuccess"
+        class="application-success"
+        hidden
+    >
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <h2>
+            Application Submitted
+        </h2>
+
+        <p>
+            Your application has been received successfully.
+            A member of the department will review your
+            application.
+        </p>
+
+        <a href="index.html" class="btn btn-gold">
+            Return Home
+        </a>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <div class="footer-bottom">
+        © 2026 Palm Beach Project RP.
+        FiveM Roleplay Community.
+    </div>
+
+</footer>
+
+
+<script src="js/script.js"></script>
+
+</body>
+
+</html>
