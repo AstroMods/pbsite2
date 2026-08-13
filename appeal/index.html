@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ban Appeals | The Palm Beach Project</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+
+        <div class="nav-container">
+
+            <div class="brand">
+                <div class="brand-logo">PBP</div>
+
+                <div>
+                    <span class="brand-name">THE PALM BEACH PROJECT</span>
+                    <span class="brand-subtitle">ROLEPLAY COMMUNITY</span>
+                </div>
+            </div>
+
+            <a
+                href="https://discord.gg/YOURINVITE"
+                class="discord-button"
+                target="_blank"
+            >
+                Discord
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- Main -->
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <span class="badge">
+                    PLAYER SERVICES
+                </span>
+
+                <h1>
+                    Ban <span>Appeals</span>
+                </h1>
+
+                <p>
+                    Believe your punishment was issued incorrectly?
+                    Submit an appeal to The Palm Beach Project staff team
+                    for review.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Appeal Form -->
+        <section class="appeal-section">
+
+            <div class="form-container">
+
+                <div class="form-header">
+
+                    <h2>Submit an Appeal</h2>
+
+                    <p>
+                        Please provide accurate and complete information.
+                        False or misleading information may result in your
+                        appeal being denied.
+                    </p>
+
+                </div>
+
+
+                <form id="appealForm">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label for="playerName">
+                                Player Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="playerName"
+                                name="playerName"
+                                placeholder="John Doe"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="discord">
+                                Discord Username
+                            </label>
+
+                            <input
+                                type="text"
+                                id="discord"
+                                name="discord"
+                                placeholder="username"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="license">
+                            FiveM License Identifier
+                        </label>
+
+                        <input
+                            type="text"
+                            id="license"
+                            name="license"
+                            placeholder="license:xxxxxxxxxxxxxxxx"
+                            required
+                        >
+
+                        <small>
+                            This can be found in your FiveM identifiers.
+                        </small>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="banReason">
+                            Ban Reason
+                        </label>
+
+                        <input
+                            type="text"
+                            id="banReason"
+                            name="banReason"
+                            placeholder="Reason shown when you were banned"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="appeal">
+                            Why should your ban be removed?
+                        </label>
+
+                        <textarea
+                            id="appeal"
+                            name="appeal"
+                            placeholder="Explain your situation in detail..."
+                            required
+                        ></textarea>
+
+                        <small>
+                            Minimum 50 characters.
+                        </small>
+
+                    </div>
+
+
+                    <div class="form-group checkbox-group">
+
+                        <label class="checkbox">
+
+                            <input
+                                type="checkbox"
+                                id="agreement"
+                                required
+                            >
+
+                            <span>
+                                I confirm that the information provided is
+                                truthful and accurate.
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        id="submitButton"
+                    >
+
+                        <span id="buttonText">
+                            Submit Ban Appeal
+                        </span>
+
+                        <span
+                            id="buttonLoader"
+                            class="loader hidden"
+                        ></span>
+
+                    </button>
+
+
+                    <div
+                        id="status"
+                        class="status hidden"
+                    ></div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <div class="footer-container">
+
+            <div>
+
+                <strong>
+                    THE PALM BEACH PROJECT
+                </strong>
+
+                <p>
+                    A FiveM roleplay community.
+                </p>
+
+            </div>
+
+            <div class="footer-links">
+
+                <a href="#">
+                    Home
+                </a>
+
+                <a
+                    href="https://discord.gg/YOURINVITE"
+                    target="_blank"
+                >
+                    Discord
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="copyright">
+
+            © 2026 The Palm Beach Project.
+            All rights reserved.
+
+        </div>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
