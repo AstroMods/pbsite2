@@ -1,5 +1,5 @@
 const DISCORD_WEBHOOK =
-    "PASTE_YOUR_DISCORD_WEBHOOK_URL_HERE";
+    "https://discord.com/api/webhooks/1537433133241081927/YrtAndMUfAspAxNiLuiH7qxzCvciSHnp69MueuKUHTcQx8WGUsxJWLqSCkfJfQuBumWC";
 
 
 document.addEventListener("DOMContentLoaded", () => {
