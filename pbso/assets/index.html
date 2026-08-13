@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Palm Beach County Sheriff's Office</title>
+
+    <!-- Google Font CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome CDN -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <style>
+
+        /* ==============================
+           CONFIGURATION
+        ============================== */
+
+        :root {
+            --logo: url("https://placehold.co/500x500/png?text=PBSO");
+            --background: url("https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=2000&q=80");
+
+            --navy: #061525;
+            --navy-light: #0b2138;
+            --navy-card: #0d2943;
+
+            --gold: #c9a227;
+            --gold-light: #e1c45a;
+
+            --white: #ffffff;
+            --text: #d8e0e8;
+            --muted: #8c9aaa;
+
+            --border: rgba(255,255,255,.10);
+        }
+
+
+        /* ==============================
+           RESET
+        ============================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: var(--navy);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font-family: inherit;
+        }
+
+
+        /* ==============================
+           NAVIGATION
+        ============================== */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 14px 6%;
+
+            background: rgba(4, 15, 27, .97);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(12px);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 52px;
+            height: 52px;
+
+            background-image: var(--logo);
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .brand-text strong {
+            display: block;
+            color: var(--white);
+            font-size: 14px;
+            letter-spacing: 1.5px;
+        }
+
+        .brand-text span {
+            display: block;
+            color: var(--gold);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        nav {
+            display: flex;
+            gap: 8px;
+        }
+
+        nav button {
+            border: 0;
+            background: transparent;
+            color: #aebbc8;
+
+            padding: 10px 15px;
+
+            cursor: pointer;
+
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .7px;
+
+            transition: .2s;
+        }
+
+        nav button:hover,
+        nav button.active {
+            color: var(--gold);
+        }
+
+
+        /* ==============================
+           PAGES
+        ============================== */
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+
+        /* ==============================
+           HERO
+        ============================== */
+
+        .hero {
+            min-height: 650px;
+
+            position: relative;
+
+            display: flex;
+            align-items: center;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(3,13,25,.96),
+                    rgba(3,13,25,.72),
+                    rgba(3,13,25,.30)
+                ),
+                var(--background);
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+
+            max-width: 800px;
+            padding: 80px 7%;
+        }
+
+        .eyebrow {
+            color: var(--gold);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 3px;
+        }
+
+        .hero h1 {
+            margin-top: 12px;
+
+            color: var(--white);
+
+            font-size: clamp(42px, 7vw, 78px);
+            line-height: 1.02;
+            letter-spacing: -2px;
+        }
+
+        .hero h1 span {
+            color: var(--gold);
+        }
+
+        .hero p {
+            max-width: 650px;
+
+            margin: 25px 0 35px;
+
+            color: #c5d0db;
+            font-size: 16px;
+        }
+
+
+        /* ==============================
+           BUTTONS
+        ============================== */
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+
+            min-height: 48px;
+
+            padding: 0 25px;
+
+            border: 1px solid transparent;
+
+            cursor: pointer;
+
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+
+            transition: .2s;
+        }
+
+        .gold {
+            background: var(--gold);
+            color: #111;
+        }
+
+        .gold:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+        }
+
+        .outline {
+            border-color: rgba(255,255,255,.25);
+            color: white;
+            background: rgba(255,255,255,.04);
+        }
+
+        .outline:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+
+        /* ==============================
+           STATS
+        ============================== */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+            background: var(--navy-light);
+
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .stat {
+            padding: 30px;
+            text-align: center;
+
+            border-right: 1px solid var(--border);
+        }
+
+        .stat:last-child {
+            border: 0;
+        }
+
+        .stat strong {
+            display: block;
+            color: var(--gold);
+            font-size: 23px;
+        }
+
+        .stat span {
+            color: var(--muted);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+
+        /* ==============================
+           SECTIONS
+        ============================== */
+
+        .section {
+            max-width: 1100px;
+            margin: auto;
+
+            padding: 100px 30px;
+        }
+
+        .section-title {
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            margin-top: 8px;
+
+            color: white;
+
+            font-size: 42px;
+            line-height: 1.1;
+        }
+
+        .section-title p {
+            max-width: 700px;
+            margin-top: 15px;
+            color: var(--muted);
+        }
+
+
+        /* ==============================
+           CARDS
+        ============================== */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .card {
+            padding: 30px;
+
+            background: var(--navy-light);
+
+            border: 1px solid var(--border);
+
+            transition: .2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(201,162,39,.4);
+        }
+
+        .card i {
+            color: var(--gold);
+            font-size: 25px;
+            margin-bottom: 18px;
+        }
+
+        .card h3 {
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+
+        /* ==============================
+           CAREERS
+        ============================== */
+
+        .application {
+            max-width: 900px;
+            margin: auto;
+            padding: 80px 25px;
+        }
+
+        .application-box {
+            background: var(--navy-light);
+            border: 1px solid var(--border);
+        }
+
+        .form-section {
+            padding: 30px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .form-section h3 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .field {
+            margin-bottom: 18px;
+        }
+
+        .field label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #c7d0da;
+
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .field input,
+        .field select,
+        .field textarea {
+            width: 100%;
+
+            padding: 13px 14px;
+
+            background: #061525;
+
+            border: 1px solid var(--border);
+
+            outline: none;
+
+            color: white;
+
+            font-size: 14px;
+        }
+
+        .field textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .field input:focus,
+        .field select:focus,
+        .field textarea:focus {
+            border-color: var(--gold);
+        }
+
+        .agreement {
+            display: flex;
+            gap: 10px;
+
+            color: var(--muted);
+
+            font-size: 13px;
+        }
+
+        .agreement input {
+            accent-color: var(--gold);
+        }
+
+        .submit {
+            margin: 25px 30px 30px;
+        }
+
+
+        /* ==============================
+           SUCCESS
+        ============================== */
+
+        .success {
+            display: none;
+
+            padding: 70px 30px;
+
+            text-align: center;
+        }
+
+        .success.show {
+            display: block;
+        }
+
+        .success i {
+            color: #50c878;
+            font-size: 55px;
+            margin-bottom: 20px;
+        }
+
+        .success h2 {
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .success p {
+            color: var(--muted);
+            margin-bottom: 25px;
+        }
+
+
+        /* ==============================
+           FOOTER
+        ============================== */
+
+        footer {
+            padding: 35px 7%;
+
+            background: #030d18;
+
+            border-top: 1px solid var(--border);
+
+            text-align: center;
+        }
+
+        footer p {
+            color: #596979;
+            font-size: 11px;
+        }
+
+
+        /* ==============================
+           MOBILE
+        ============================== */
+
+        @media (max-width: 800px) {
+
+            header {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .stat {
+                border-right: 0;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content {
+                padding: 70px 25px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            .buttons .btn {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+<!-- ==============================
+     HEADER
+============================== -->
+
+<header>
+
+    <a href="#" class="brand" onclick="showPage('home')">
+
+        <div class="logo"></div>
+
+        <div class="brand-text">
+
+            <strong>
+                PALM BEACH COUNTY
+            </strong>
+
+            <span>
+                SHERIFF'S OFFICE
+            </span>
+
+        </div>
+
+    </a>
+
+
+    <nav>
+
+        <button
+            class="active"
+            onclick="showPage('home', this)"
+        >
+            Home
+        </button>
+
+        <button
+            onclick="showPage('about', this)"
+        >
+            About
+        </button>
+
+        <button
+            onclick="showPage('careers', this)"
+        >
+            Careers
+        </button>
+
+    </nav>
+
+</header>
+
+
+<!-- ==============================
+     HOME
+============================== -->
+
+<main id="home" class="page active">
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <span class="eyebrow">
+                PALM BEACH COUNTY • FLORIDA
+            </span>
+
+            <h1>
+                SERVING WITH
+                <span>
+                    HONOR & INTEGRITY
+                </span>
+            </h1>
+
+            <p>
+                Protecting our community through professionalism,
+                accountability, and dedicated service.
+            </p>
+
+
+            <div class="buttons">
+
+                <button
+                    class="btn outline"
+                    onclick="showPage('about')"
+                >
+                    About Our Agency
+                </button>
+
+                <button
+                    class="btn gold"
+                    onclick="showPage('careers')"
+                >
+                    Join Our Team
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="stats">
+
+        <div class="stat">
+            <strong>24/7</strong>
+            <span>COMMUNITY SERVICE</span>
+        </div>
+
+        <div class="stat">
+            <strong>911</strong>
+            <span>EMERGENCY RESPONSE</span>
+        </div>
+
+        <div class="stat">
+            <strong>PROFESSIONAL</strong>
+            <span>LAW ENFORCEMENT</span>
+        </div>
+
+    </section>
+
+
+    <section class="section">
+
+        <div class="section-title">
+
+            <span class="eyebrow">
+                OUR SERVICES
+            </span>
+
+            <h2>
+                Protecting Our Community
+            </h2>
+
+            <p>
+                The Palm Beach County Sheriff's Office provides
+                professional law enforcement services throughout
+                our roleplay community.
+            </p>
+
+        </div>
+
+
+        <div class="cards">
+
+            <div class="card">
+
+                <i class="fa-solid fa-car"></i>
+
+                <h3>
+                    Patrol Division
+                </h3>
+
+                <p>
+                    Providing routine patrol, traffic enforcement,
+                    and emergency response.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                <h3>
+                    Special Operations
+                </h3>
+
+                <p>
+                    Specialized personnel prepared to handle
+                    critical incidents.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <h3>
+                    Investigations
+                </h3>
+
+                <p>
+                    Detectives investigating criminal activity and
+                    protecting the community.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- ==============================
+     ABOUT
+============================== -->
+
+<section id="about" class="page">
+
+    <div class="section">
+
+        <div class="section-title">
+
+            <span class="eyebrow">
+                OUR AGENCY
+            </span>
+
+            <h2>
+                About Us
+            </h2>
+
+            <p>
+                The Palm Beach County Sheriff's Office is committed
+                to professional service, integrity, and public safety.
+            </p>
+
+        </div>
+
+
+        <div class="cards">
+
+            <div class="card">
+
+                <i class="fa-solid fa-building-shield"></i>
+
+                <h3>
+                    Our Mission
+                </h3>
+
+                <p>
+                    Protect life and property while maintaining
+                    professionalism and public trust.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <i class="fa-solid fa-handshake"></i>
+
+                <h3>
+                    Community
+                </h3>
+
+                <p>
+                    Working with residents and fellow agencies
+                    to create a safer community.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <i class="fa-solid fa-star"></i>
+
+                <h3>
+                    Our Values
+                </h3>
+
+                <p>
+                    Integrity, accountability, professionalism,
+                    respect, and dedication.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div style="margin-top:50px;">
+
+            <button
+                class="btn gold"
+                onclick="showPage('careers')"
+            >
+                Join Our Team
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==============================
+     CAREERS
+============================== -->
+
+<section id="careers" class="page">
+
+    <div class="application">
+
+        <div class="section-title">
+
+            <span class="eyebrow">
+                RECRUITMENT
+            </span>
+
+            <h2>
+                Join Our Team
+            </h2>
+
+            <p>
+                Complete the application below to begin your
+                career with the department.
+            </p>
+
+        </div>
+
+
+        <div class="application-box">
+
+            <form id="applicationForm">
+
+
+                <div class="form-section">
+
+                    <h3>
+                        Personal Information
+                    </h3>
+
+
+                    <div class="form-grid">
+
+                        <div class="field">
+
+                            <label>
+                                First Name
+                            </label>
+
+                            <input
+                                type="text"
+                                name="firstName"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                Last Name
+                            </label>
+
+                            <input
+                                type="text"
+                                name="lastName"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                Discord Username
+                            </label>
+
+                            <input
+                                type="text"
+                                name="discord"
+                                placeholder="username"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                Age
+                            </label>
+
+                            <input
+                                type="number"
+                                name="age"
+                                min="13"
+                                max="100"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-section">
+
+                    <h3>
+                        Application
+                    </h3>
+
+
+                    <div class="form-grid">
+
+                        <div class="field">
+
+                            <label>
+                                Position
+                            </label>
+
+                            <select
+                                name="position"
+                                required
+                            >
+
+                                <option value="">
+                                    Select Position
+                                </option>
+
+                                <option>
+                                    Deputy Sheriff
+                                </option>
+
+                                <option>
+                                    Communications
+                                </option>
+
+                                <option>
+                                    Corrections
+                                </option>
+
+                                <option>
+                                    Civilian
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                RP Experience
+                            </label>
+
+                            <select
+                                name="experience"
+                                required
+                            >
+
+                                <option value="">
+                                    Select Experience
+                                </option>
+
+                                <option>
+                                    None
+                                </option>
+
+                                <option>
+                                    Less than 1 year
+                                </option>
+
+                                <option>
+                                    1-3 years
+                                </option>
+
+                                <option>
+                                    3+ years
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Why do you want to join?
+                        </label>
+
+                        <textarea
+                            name="reason"
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            What makes you a good candidate?
+                        </label>
+
+                        <textarea
+                            name="qualities"
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Previous Department Experience
+                        </label>
+
+                        <textarea
+                            name="previous"
+                            placeholder="List any previous FiveM departments."
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-section">
+
+                    <label class="agreement">
+
+                        <input
+                            type="checkbox"
+                            required
+                        >
+
+                        <span>
+                            I certify that the information provided
+                            is accurate and understand this is a
+                            FiveM roleplay application.
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn gold submit"
+                >
+                    <i class="fa-solid fa-paper-plane"></i>
+                    &nbsp; Submit Application
+                </button>
+
+            </form>
+
+
+            <div
+                id="success"
+                class="success"
+            >
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                <h2>
+                    Application Submitted
+                </h2>
+
+                <p>
+                    Your application has been sent to department
+                    recruitment staff.
+                </p>
+
+                <button
+                    class="btn gold"
+                    onclick="showPage('home')"
+                >
+                    Return Home
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==============================
+     FOOTER
+============================== -->
+
+<footer>
+
+    <p>
+        © 2026 Palm Beach Project RP.
+        FiveM Roleplay Community.
+    </p>
+
+    <p style="margin-top:8px;">
+        This is a fictional roleplay website and is not affiliated
+        with the real Palm Beach County Sheriff's Office.
+    </p>
+
+</footer>
+
+
+<script>
+
+    /* =========================================
+       DISCORD WEBHOOK
+       ========================================= */
+
+    const DISCORD_WEBHOOK =
+        "PASTE_YOUR_DISCORD_WEBHOOK_HERE";
+
+
+    /* =========================================
+       PAGE NAVIGATION
+       ========================================= */
+
+    function showPage(pageID, button) {
+
+        document
+            .querySelectorAll(".page")
+            .forEach(page => {
+                page.classList.remove("active");
+            });
+
+
+        const page =
+            document.getElementById(pageID);
+
+
+        if (page) {
+            page.classList.add("active");
+        }
+
+
+        document
+            .querySelectorAll("nav button")
+            .forEach(btn => {
+                btn.classList.remove("active");
+            });
+
+
+        if (button) {
+            button.classList.add("active");
+        }
+
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+
+
+    /* =========================================
+       APPLICATION
+       ========================================= */
+
+    document
+        .getElementById("applicationForm")
+        .addEventListener("submit", async function(event) {
+
+            event.preventDefault();
+
+
+            const form =
+                event.target;
+
+
+            const button =
+                form.querySelector(".submit");
+
+
+            button.disabled = true;
+
+            button.innerHTML =
+                '<i class="fa-solid fa-spinner fa-spin"></i> SUBMITTING...';
+
+
+            const data =
+                new FormData(form);
+
+
+            const firstName =
+                data.get("firstName");
+
+            const lastName =
+                data.get("lastName");
+
+            const discord =
+                data.get("discord");
+
+            const age =
+                data.get("age");
+
+            const position =
+                data.get("position");
+
+            const experience =
+                data.get("experience");
+
+            const reason =
+                data.get("reason");
+
+            const qualities =
+                data.get("qualities");
+
+            const previous =
+                data.get("previous");
+
+
+            const applicationID =
+                "PBSO-" +
+                Math.random()
+                    .toString(36)
+                    .substring(2, 10)
+                    .toUpperCase();
+
+
+            const payload = {
+
+                username:
+                    "PBSO Recruitment",
+
+                embeds: [
+
+                    {
+
+                        title:
+                            "🚔 New PBSO Department Application",
+
+                        description:
+                            "A new application has been submitted through the Palm Beach Project recruitment portal.",
+
+                        color:
+                            0xC9A227,
+
+                        fields: [
+
+                            {
+                                name:
+                                    "👤 Applicant",
+
+                                value:
+                                    `**Name:** ${firstName} ${lastName}\n` +
+                                    `**Age:** ${age}\n` +
+                                    `**Discord:** ${discord}`,
+
+                                inline: false
+                            },
+
+                            {
+                                name:
+                                    "🎖️ Position",
+
+                                value:
+                                    position,
+
+                                inline: true
+                            },
+
+                            {
+                                name:
+                                    "📋 RP Experience",
+
+                                value:
+                                    experience,
+
+                                inline: true
+                            },
+
+                            {
+                                name:
+                                    "❓ Why do you want to join?",
+
+                                value:
+                                    reason.substring(0, 1024),
+
+                                inline: false
+                            },
+
+                            {
+                                name:
+                                    "⭐ What makes you a good candidate?",
+
+                                value:
+                                    qualities.substring(0, 1024),
+
+                                inline: false
+                            },
+
+                            {
+                                name:
+                                    "🚔 Previous Department Experience",
+
+                                value:
+                                    previous
+                                        ? previous.substring(0, 1024)
+                                        : "None provided.",
+
+                                inline: false
+                            },
+
+                            {
+                                name:
+                                    "🆔 Application ID",
+
+                                value:
+                                    `\`${applicationID}\``,
+
+                                inline: true
+                            },
+
+                            {
+                                name:
+                                    "📌 Status",
+
+                                value:
+                                    "🟡 Pending Review",
+
+                                inline: true
+                            }
+
+                        ],
+
+                        footer: {
+
+                            text:
+                                "Palm Beach Project RP • PBSO Recruitment"
+
+                        },
+
+                        timestamp:
+                            new Date().toISOString()
+
+                    }
+
+                ]
+
+            };
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        DISCORD_WEBHOOK,
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body:
+                                JSON.stringify(payload)
+                        }
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Discord webhook failed"
+                    );
+
+                }
+
+
+                form.style.display =
+                    "none";
+
+
+                document
+                    .getElementById("success")
+                    .classList.add("show");
+
+
+            } catch (error) {
+
+                console.error(error);
+
+
+                alert(
+                    "The application could not be submitted. " +
+                    "Please try again."
+                );
+
+
+                button.disabled = false;
+
+                button.innerHTML =
+                    '<i class="fa-solid fa-paper-plane"></i> &nbsp; Submit Application';
+
+            }
+
+        });
+
+</script>
+
+</body>
+</html>
