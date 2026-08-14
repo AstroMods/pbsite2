@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DOM IS COOL</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+
+            background:
+                radial-gradient(circle at 20% 20%, #242424 0%, transparent 30%),
+                radial-gradient(circle at 80% 80%, #191919 0%, transparent 30%),
+                #0d0d0d;
+
+            color: #f5f5f5;
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+        }
+
+        /* subtle grain */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.035;
+
+            background-image:
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+        }
+
+        .container {
+            position: relative;
+            text-align: center;
+            padding: 70px 90px;
+
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 28px;
+
+            background: rgba(255, 255, 255, 0.045);
+            backdrop-filter: blur(18px);
+
+            box-shadow:
+                0 30px 80px rgba(0, 0, 0, 0.55),
+                inset 0 1px rgba(255, 255, 255, 0.08);
+
+            transform: rotate(-0.5deg);
+            transition:
+                transform 0.35s ease,
+                box-shadow 0.35s ease;
+        }
+
+        .container:hover {
+            transform: rotate(0.5deg) translateY(-5px);
+
+            box-shadow:
+                0 40px 100px rgba(0, 0, 0, 0.65),
+                inset 0 1px rgba(255, 255, 255, 0.12);
+        }
+
+        h1 {
+            margin: 0;
+
+            font-size: clamp(3rem, 9vw, 8rem);
+            line-height: 0.9;
+            letter-spacing: -0.07em;
+            font-weight: 900;
+
+            background: linear-gradient(
+                135deg,
+                #ffffff,
+                #a8a8a8
+            );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-7px) rotate(-1deg);
+            }
+        }
+
+        /* goofy little cursor-following glow */
+        .glow {
+            position: fixed;
+            width: 350px;
+            height: 350px;
+
+            border-radius: 50%;
+
+            background: radial-gradient(
+                circle,
+                rgba(255, 255, 255, 0.08),
+                transparent 70%
+            );
+
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+
+            transition:
+                left 0.15s ease,
+                top 0.15s ease;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+                padding: 50px 25px;
+                border-radius: 22px;
+            }
+
+            h1 {
+                font-size: 20vw;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="glow"></div>
+
+    <main class="container">
+        <h1>DOM IS COOL</h1>
+    </main>
+
+    <script>
+        const glow = document.querySelector(".glow");
+
+        document.addEventListener("mousemove", (event) => {
+            glow.style.left = event.clientX + "px";
+            glow.style.top = event.clientY + "px";
+        });
+
+        // Tiny bit of unnecessary silliness.
+        document.querySelector("h1").addEventListener("click", () => {
+            document.querySelector("h1").animate(
+                [
+                    { transform: "scale(1) rotate(0deg)" },
+                    { transform: "scale(1.08) rotate(-2deg)" },
+                    { transform: "scale(0.98) rotate(2deg)" },
+                    { transform: "scale(1) rotate(0deg)" }
+                ],
+                {
+                    duration: 500,
+                    easing: "cubic-bezier(.2,.8,.2,1)"
+                }
+            );
+        });
+    </script>
+
+</body>
+</html>
