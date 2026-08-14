@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CFX Tag Previwer</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+
+  <style>
+    #generateBtn {
+      background: linear-gradient(90deg, #7400b8, #b106ff, #00b4d8, #00b4d8, #7400b8);
+      background-size: 300% 300%;
+      background-position: 0% 50%;
+      transition: background-position 0.3s;
+      animation: gradient-move-btn 8s ease-in-out infinite alternate;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 24px;
+      font-size: 1.1em;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #0003;
+    }
+
+    @keyframes gradient-move-btn {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .typewriter {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      min-width: 54ch;
+      max-width: 54ch;
+      width: 54ch;
+      min-height: 48px;
+      font-size: 1.2em;
+      text-align: center;
+      margin-bottom: 0.5em;
+      font-family: 'Fira Mono', 'Consolas', monospace;
+      white-space: pre;
+      overflow: hidden;
+      box-sizing: border-box;
+      background: linear-gradient(90deg, #7400b8 0%, #00b4d8 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      transition: none;
+      letter-spacing: 0.02em;
+    }
+    @keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+    }
+    .typewriter.animated {
+      animation: typewriter 4.5s steps(60, end) 1;
+    }
+    #colorSidebar {
+      scrollbar-width: thin;
+      scrollbar-color: #00b4d8 #222;
+    }
+    #colorSidebar::-webkit-scrollbar {
+      width: 10px;
+    }
+    #colorSidebar::-webkit-scrollbar-thumb {
+      background: #00b4d8;
+      border-radius: 8px;
+    }
+    #colorSidebar::-webkit-scrollbar-track {
+      background: #222;
+      border-radius: 8px;
+    }
+    body {
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+      background: linear-gradient(120deg, #181c24 0%, #232946 100%);
+      color: #f4f4f4;
+      padding: 0;
+      margin: 0;
+      min-height: 100vh;
+      position: relative;
+    }
+    #tsparticles {
+      position: fixed;
+      z-index: 0;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none;
+    }
+    .main-container, nav, .content-card, aside, .preview {
+      position: relative;
+      z-index: 1;
+    }
+    /* Animated textarea text */
+    .animated-text-div {
+      position: absolute;
+      left: 0; right: 0; top: 0; bottom: 0;
+      pointer-events: none;
+      background: none;
+      color: transparent;
+      font-size: 1.1em;
+      font-family: inherit;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      padding: 14px;
+      margin-top: 10px;
+      border-radius: 8px;
+      z-index: 2;
+      background: linear-gradient(90deg, #00b4d8 0%, #b106ff 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradient-move 2.5s linear infinite alternate;
+      white-space: pre-wrap;
+      overflow: hidden;
+      display: none;
+    }
+    @keyframes gradient-move {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+    nav {
+      background: #181c24;
+      box-shadow: 0 2px 8px #0002;
+      padding: 18px 40px 18px 40px;
+      border-bottom: 1px solid #232946;
+      margin-bottom: 0;
+      display: flex;
+      align-items: center;
+    }
+    nav a {
+      color: #00b4d8;
+      font-weight: bold;
+      margin-right: 20px;
+      text-decoration: none;
+      font-size: 1.1em;
+      letter-spacing: 0.5px;
+      transition: color 0.2s;
+    }
+    nav a:hover {
+      color: #fff;
+    }
+    .main-container {
+      display: flex;
+      align-items: flex-start;
+      max-width: 1200px;
+      margin: 40px auto 0 auto;
+      padding: 0 24px;
+      gap: 36px;
+    }
+    .content-card {
+      background: #232946;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px #0003;
+      padding: 36px 32px 32px 32px;
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    h1 {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      font-size: 2.2em;
+      margin-bottom: 0.2em;
+      letter-spacing: 1px;
+      font-family: 'Fira Mono', 'Consolas', monospace;
+      background: linear-gradient(270deg, #7400b8, #00b4d8, #b106ff, #00b4d8, #7400b8);
+      background-size: 400% 400%;
+      background-position: 0% 50%;
+      animation: gradient-move-h1 10s ease-in-out infinite alternate;
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
+
+    @keyframes gradient-move-h1 {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .typewriter {
+      background: linear-gradient(270deg, #7400b8, #00b4d8, #b106ff, #00b4d8, #7400b8);
+      background-size: 400% 400%;
+      background-position: 0% 50%;
+      animation: gradient-move-h1 10s ease-in-out infinite alternate;
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
+    .desc {
+      color: #bfc9d1;
+      font-size: 1.1em;
+      margin-bottom: 0.5em;
+    }
+    .preview {
+  margin-top: 10px;
+  padding: 14px;
+  background: #1e1e2f;
+  border-radius: 8px;
+  min-height: 88px;
+  font-weight: bold;
+  font-size: 1.1em;
+  white-space: pre-wrap;
+  box-shadow: 0 2px 8px #0002;
+  border: 1px solid #232946;
+  width: 100%;
+  resize: none;
+    }
+    input, textarea {
+  width: 100%;
+  padding: 14px;
+  margin-top: 10px;
+  font-size: 1.1em;
+  background: #232946;
+  border: 1px solid #2d334a;
+  color: #fff;
+  border-radius: 8px;
+  outline: none;
+  transition: border 0.2s;
+  resize: none;
+  min-height: 88px;
+    }
+    input:focus, textarea:focus {
+      border: 1.5px solid #00b4d8;
+    }
+    .char {
+      display: inline;
+      white-space: pre;
+    }
+  </style>
+</head>
+<body>
+  <div id="tsparticles"></div>
+  <!-- Tutorial Modal -->
+  <div id="tutorialModal" style="display: flex; align-items: center; justify-content: center; position: fixed; z-index: 99999; left: 0; top: 0; width: 100vw; height: 100vh; background: rgba(24,28,36,0.92); backdrop-filter: blur(2px);">
+    <div style="background: #232946; color: #fff; border-radius: 16px; box-shadow: 0 8px 32px #0008; padding: 36px 32px 28px 32px; max-width: 420px; width: 90vw; position: relative; text-align: left;">
+      <button id="closeTutorial" style="position: absolute; top: 16px; right: 16px; background: #00b4d8; color: #fff; border: none; border-radius: 50%; width: 32px; height: 32px; font-size: 1.3em; font-weight: bold; cursor: pointer; box-shadow: 0 2px 8px #0003;">&times;</button>
+      <h2 style="margin-top: 0; color: #00b4d8;">How to use the Tag Previewer</h2>
+      <ol style="margin: 0 0 0 1.2em; padding: 0; color: #bfc9d1; font-size: 1.08em;">
+        <li>Type or paste your tag in the input box.</li>
+        <br>
+        <li>Click a color in the sidebar to insert its color code at the cursor or select the word and click the color to change the text color.</li>
+        <br>
+        <li>The preview updates live below the input.</li>
+        <br>
+        <li>Copy your updated input, for your tag to be properly formatted for use elsewhere.</li>
+      </ol>
+      <div style="margin-top: 1.2em; color: #bfc9d1; font-size: 0.98em;">Tip: Hover over colors to see their index. You can select text and then click a color to wrap it.</div>
+    </div>
+  </div>
+  <nav style="margin-bottom: 24px;">
+  </nav>
+
+  <div style="display: flex; align-items: flex-start;">
+    <div style="flex: 1; min-width: 0;">
+      <h1>Headtag & Gangtag Preview</h1>
+      <div class="desc">
+  <div id="typewriterText" class="typewriter"></div>
+      </div>
+      <div style="position: relative;">
+      <script>
+        const typewriterText = document.getElementById('typewriterText');
+  const typewriterContent = "Enter your tag below using ~HC_index number~";
+        let i = 0;
+        function typeWriter() {
+          if (i <= typewriterContent.length) {
+            typewriterText.textContent = typewriterContent.slice(0, i);
+            i++;
+            setTimeout(typeWriter, 60); 
+          } else {
+            typewriterText.classList.remove('animated');
+            setTimeout(() => {
+              typewriterText.classList.add('animated');
+              i = 0;
+              setTimeout(typeWriter, 1200);
+            }, 2500);
+          }
+        }
+        typewriterText.classList.add('animated');
+        typeWriter();
+      </script>
+        <textarea id="tagInput" rows="4" placeholder="~HC_9~Made~HC_24~ By ~HC_9~iq~HC_24~ Vertual" style="position: relative; background: #232946; z-index: 3;"></textarea>
+        <div id="animatedTextDiv" class="animated-text-div"></div>
+      </div>
+      <script>
+        const tagInput = document.getElementById('tagInput');
+        const animatedDiv = document.getElementById('animatedTextDiv');
+        function syncAnimatedText() {
+          animatedDiv.textContent = tagInput.value;
+        }
+        tagInput.addEventListener('input', syncAnimatedText);
+        tagInput.addEventListener('focus', () => {
+          animatedDiv.style.display = 'block';
+          syncAnimatedText();
+        });
+        tagInput.addEventListener('blur', () => {
+          animatedDiv.style.display = 'none';
+        });
+        animatedDiv.style.display = 'none';
+      </script>
+  
+  <div id="livePreview" class="preview" style="margin-top: 18px;"></div>
+    <a href="https://github.com/iqVertual"
+      style="font-weight: bold; color: rgb(185, 6, 255); text-transform: uppercase; text-decoration: underline; font-size: 1em; margin-top: 16px; display: block; text-align: right;"
+      target="_blank">
+      Made By IqVertual
+    </a>
+    </div>
+    <aside id="colorSidebar" style="width: 260px; max-height: 80vh; overflow-y: auto; background: #181818; border-radius: 10px; padding: 16px 8px 16px 16px; margin-left: 32px; box-shadow: 0 2px 8px #0002; position: relative; transition: transform 0.3s, opacity 0.3s;">
+      <button id="toggleSidebar" style="position: absolute; left: -36px; top: 20px; z-index: 100; background: #222; color: #00b4d8; border: none; border-radius: 6px 0 0 6px; padding: 6px 12px; cursor: pointer; font-weight: bold; font-size: 1.4em; box-shadow: 0 2px 8px #0006;">→</button>
+      <h2 style="color: #00b4d8; font-size: 1.2em; margin-bottom: 12px;">Tag Colors</h2>
+      <div id="colorPickerContainer" style="margin-bottom: 16px; display: flex; flex-wrap: wrap; gap: 8px;"></div>
+      <div id="colorList"></div>
+    </aside>
+  </div>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', function() {
+      const modal = document.getElementById('tutorialModal');
+      const closeBtn = document.getElementById('closeTutorial');
+      closeBtn.addEventListener('click', function() {
+        modal.style.display = 'none';
+      });
+    });
+const colorMap ={
+  0: "#FFFFFF",
+  1: "#F0F0F0",
+  2: "#000000",
+  3: "#9B9B9B",
+  4: "#CDCDCD",
+  5: "#4D4D4D",
+  6: "#E03232",
+  7: "#F09999",
+  8: "#701919",
+  9: "#5BD6E5",
+  10: "#AEDBF2",
+  11: "#2F5C73",
+  12: "#F0C850",
+  13: "#FEEBA9",
+  14: "#7E6B29",
+  15: "#FF8555",
+  16: "#FFC2AA",
+  17: "#7F422A",
+  18: "#72CC72",
+  19: "#B9E6B9",
+  20: "#396639",
+  21: "#8466E2",
+  22: "#C0B3EF",
+  23: "#43396F",
+  24: "#CB3694",
+  25: "#359A47",
+  26: "#5BD6E5",
+  27: "#EB2427",
+  28: "#C25050",
+  29: "#9C6EAF",
+  30: "#FF7BC4",
+  31: "#F79F7B",
+  32: "#B29084",
+  33: "#8DCEA7",
+  34: "#71A9AF",
+  35: "#D3D1E7",
+  36: "#907F99",
+  37: "#6AC4BF",
+  38: "#D6C499",
+  39: "#EA8E50",
+  40: "#98CBEA",
+  41: "#B26287",
+  42: "#908E7A",
+  43: "#A6755E",
+  44: "#AFA8A8",
+  45: "#E88E9B",
+  46: "#BBD65B",
+  47: "#0C7B56",
+  48: "#7BC4FF",
+  49: "#AB3CE6",
+  50: "#CEA90D",
+  51: "#4763AD",
+  52: "#2AA6B9",
+  53: "#BA9D7D",
+  54: "#C9E1FF",
+  55: "#F0F096",
+  56: "#ED8CA1",
+  57: "#F98A8A",
+  58: "#FCEFA6",
+  59: "#F0F0F0",
+  60: "#9FC9A6",
+  61: "#8C8C8C",
+  62: "#8C8C8C",
+  63: "#282828",
+  64: "#F0A000",
+  65: "#F0A000",
+  66: "#F0C850",
+  67: "#8C8C8C",
+  68: "#3C3C3C",
+  69: "#1E1E1E",
+  70: "#8C8C8C",
+  71: "#4B4B4B",
+  72: "#323232",
+  73: "#5F5F5F",
+  74: "#646464",
+  75: "#5D2727",
+  76: "#4D3759",
+  77: "#7C3E63",
+  78: "#785050",
+  79: "#574842",
+  80: "#4A6753",
+  81: "#3C5558",
+  82: "#696940",
+  83: "#483F4C",
+  84: "#35625F",
+  85: "#6B624C",
+  86: "#754728",
+  87: "#4C6575",
+  88: "#41232F",
+  89: "#48473D",
+  90: "#553A2F",
+  91: "#575454",
+  92: "#74474D",
+  93: "#5D6B2D",
+  94: "#063D2B",
+  95: "#3D627F",
+  96: "#551E73",
+  97: "#675406",
+  98: "#233156",
+  99: "#15535C",
+  100: "#5D623E",
+  101: "#64707F",
+  102: "#78784B",
+  103: "#984C5D",
+  104: "#7C4545",
+  105: "#0A2B32",
+  106: "#5F5F0A",
+  107: "#B48261",
+  108: "#9699A1",
+  109: "#D6B563",
+  110: "#A6DDBC",
+  111: "#1D6499",
+  112: "#D6740F",
+  113: "#877D8E",
+  114: "#E577B9",
+  115: "#FCEFA6",
+  116: "#2D6EB9",
+  117: "#000000BA",
+  118: "#5BD6E5",
+  119: "#C25050",
+  120: "#F0C850",
+  121: "#72CC72",
+  122: "#72CC72",
+  123: "#16375C",
+  124: "#9A9A9A",
+  125: "#C25050",
+  126: "#FC73C9",
+  127: "#FCB131",
+  128: "#000000",
+  129: "#6DF7CC",
+  130: "#F16522",
+  131: "#D6BD61",
+  132: "#701919",
+  133: "#2F5C73",
+  134: "#5BD6E5",
+  135: "#EA991C",
+  136: "#0B377B",
+  137: "#92C83E",
+  138: "#EA991C",
+  139: "#425994",
+  140: "#000000BA",
+  141: "#72CC72",
+  142: "#A44CF2",
+  143: "#65B4D4",
+  144: "#ABEDAB",
+  145: "#FFA357",
+  146: "#F0F0F0",
+  147: "#EBEF1E",
+  148: "#FF950E",
+  149: "#F63CA1",
+  150: "#D2A6F9",
+  151: "#522679",
+  152: "#0000004D",
+  153: "#486774",
+  154: "#557655",
+  155: "#7F512B",
+  156: "#F0C850",
+  157: "#000000D7",
+  158: "#6464647F",
+  159: "#2D6EB9",
+  160: "#F0F0F0BF",
+  161: "#000000BA",
+  162: "#E03232",
+  163: "#000000D7",
+  164: "#004785",
+  165: "#000000",
+  166: "#217625",
+  167: "#256628",
+  168: "#EA991C",
+  169: "#E18C08",
+  170: "#142800",
+  171: "#30FFFF",
+  172: "#30FF00",
+  173: "#B05000",
+  174: "#7F0000",
+  175: "#35A6E0",
+  176: "#A24F9D",
+  177: "#68C08D",
+  178: "#1D6499",
+  179: "#EA991C",
+  180: "#F0A001",
+  181: "#3B2239",
+  182: "#294435",
+  183: "#523A0A",
+  184: "#256628BA",
+  185: "#F0C850",
+  186: "#504622",
+  187: "#FF8555",
+  188: "#FFC2AA",
+  189: "#FF8555",
+  190: "#F0C850",
+  191: "#7E6B29",
+  192: "#F79F7B",
+  193: "#E286BB",
+  194: "#EFEE97",
+  195: "#71A9AF",
+  196: "#A08CC1",
+  197: "#8DCEA7",
+  198: "#B5D6EA",
+  199: "#B29084",
+  200: "#008472",
+  201: "#D85575",
+  202: "#1E6498",
+  203: "#2BB575",
+  204: "#E98D4F",
+  205: "#89D2D7",
+  206: "#867D8D",
+  207: "#6D2221",
+  208: "#FF0000",
+  209: "#FFFF00",
+  210: "#00FF00",
+  211: "#00FFFF",
+  212: "#0000FF",
+  213: "#FF00FF",
+  214: "#2688EA",
+  215: "#E03232",
+  216: "#9AB236",
+  217: "#5D6B2D",
+  218: "#CEA90D",
+  219: "#675406",
+  220: "#009797",
+  221: "#057771",
+  222: "#970000",
+  223: "#002828",
+  224: "#E91E63",
+  225: "#474973",
+  226: "#FFFFFF",
+  227: "#FFFFFF",
+  228: "#FFFFFF",
+  229: "#FFFFFF",
+  230: "#FFFFFF",
+  231: "#FFFFFF",
+  232: "#FFFFFF",
+  233: "#FFFFFF",
+  234: "#1DEFC3"
+};
+  const input = document.getElementById("tagInput");
+  const livePreview = document.getElementById("livePreview");
+
+      function renderColorPicker() {
+        const picker = document.getElementById('colorPickerContainer');
+        picker.innerHTML = '';
+        Object.entries(colorMap).forEach(([idx, hex]) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.title = `Insert color index ${idx}`;
+          btn.style.background = hex;
+          btn.style.border = '2px solid #333';
+          btn.style.width = '32px';
+          btn.style.height = '32px';
+          btn.style.borderRadius = '6px';
+          btn.style.margin = '0 2px 2px 0';
+          btn.style.cursor = 'pointer';
+          btn.style.outline = 'none';
+          btn.style.boxShadow = '0 1px 4px #0002';
+          btn.addEventListener('click', () => {
+            insertColorIndex(idx);
+          });
+          picker.appendChild(btn);
+        });
+      }
+      renderColorPicker();
+
+      function insertColorIndex(idx) {
+        const start = input.selectionStart;
+        const end = input.selectionEnd;
+        const before = input.value.substring(0, start);
+        const after = input.value.substring(end);
+        const selected = input.value.substring(start, end);
+        let insertText;
+        let newPos;
+        if (selected.length > 0) {
+          insertText = `~HC_${idx}~${selected}`;
+          input.value = before + insertText + after;
+          input.focus();
+          input.setSelectionRange(before.length, before.length + insertText.length);
+        } else {
+          insertText = `~HC_${idx}~`;
+          input.value = before + insertText + after;
+          input.focus();
+          newPos = before.length + insertText.length;
+          input.setSelectionRange(newPos, newPos);
+        }
+        updateLivePreview();
+      }
+
+      function parseTagToHtml(input) {
+        const regex = /~HC_(\d+)~/g;
+        let match;
+        let lastIndex = 0;
+        let currentColor = "#FFFFFF";
+        let result = "";
+        while ((match = regex.exec(input)) !== null) {
+          const rawText = input.slice(lastIndex, match.index);
+          for (let char of rawText) {
+            result += `<span class="char" style="color:${currentColor}">${char}</span>`;
+          }
+          const colorIndex = match[1];
+          currentColor = colorMap[colorIndex] || "#FFFFFF";
+          lastIndex = match.index + match[0].length;
+        }
+        const remaining = input.slice(lastIndex);
+        for (let char of remaining) {
+          result += `<span class="char" style="color:${currentColor}">${char}</span>`;
+        }
+        return result;
+      }
+
+
+
+      function updateLivePreview() {
+        const val = input.value;
+        const htmlPreview = parseTagToHtml(val);
+        livePreview.innerHTML = htmlPreview;
+        livePreview.style.display = 'block';
+      }
+      input.addEventListener('input', updateLivePreview);
+      updateLivePreview();
+
+
+    const sidebar = document.getElementById('colorSidebar');
+    const toggleBtn = document.getElementById('toggleSidebar');
+    let sidebarVisible = true;
+    toggleBtn.addEventListener('click', () => {
+      sidebarVisible = !sidebarVisible;
+      if (sidebarVisible) {
+        sidebar.style.transform = 'none';
+        sidebar.style.opacity = '1';
+        toggleBtn.textContent = '→';
+      } else {
+        sidebar.style.transform = 'translateX(140px)'; 
+        sidebar.style.opacity = '0.5';
+        toggleBtn.textContent = '←';
+      }
+    });
+
+  input.value = "~HC_9~Made~HC_24~ By ~HC_9~iq~HC_24~ Vertual";
+  updateLivePreview();
+  </script>
+
+  <script>
+    document.addEventListener("contextmenu", event => event.preventDefault());
+    document.addEventListener("keydown", event => {
+        if (event.key === "F12" || (event.ctrlKey && event.shiftKey && event.key === "I")) {
+            event.preventDefault();
+        }
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@3.3.0/tsparticles.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      tsParticles.load('tsparticles', {
+        background: { color: { value: 'transparent' } },
+        fpsLimit: 60,
+        interactivity: {
+          events: {
+            onHover: { enable: true, mode: 'repulse' },
+            resize: true
+          },
+          modes: {
+            repulse: { distance: 100, duration: 0.4 }
+          }
+        },
+        particles: {
+          color: { value: '#00b4d8' },
+          links: { enable: true, color: '#00b4d8', distance: 150, opacity: 0.3, width: 1 },
+          collisions: { enable: false },
+          move: { direction: 'none', enable: true, outModes: 'bounce', random: false, speed: 1.2, straight: false },
+          number: { density: { enable: true, area: 800 }, value: 60 },
+          opacity: { value: 0.5 },
+          shape: { type: 'circle' },
+          size: { value: { min: 2, max: 5 } }
+        },
+        detectRetina: true
+      });
+    });
+  </script>
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>tsParticles Minimal Test</title>
+  <style>
+    #particles-test {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      z-index: 9999;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-test"></div>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@3.3.0/tsparticles.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      tsParticles.load('particles-test', {
+        background: { color: { value: 'transparent' } },
+        particles: {
+          color: { value: '#00b4d8' },
+          number: { value: 40 },
+          size: { value: 4 },
+          move: { enable: true, speed: 2 },
+          links: { enable: true, color: '#00b4d8', opacity: 0.5 }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+</body>
+</html>
