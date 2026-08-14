@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>404 | Palm Beach Project</title>
+
+    <meta name="description" content="The page you're looking for could not be found.">
+
+    <link rel="stylesheet" href="css/404.css">
+</head>
+
+<body>
+
+    <div class="background">
+        <div class="grid"></div>
+        <div class="glow glow-one"></div>
+        <div class="glow glow-two"></div>
+    </div>
+
+    <main class="error-container">
+
+        <div class="badge">
+            <span></span>
+            PALM BEACH PROJECT
+        </div>
+
+        <h1>404</h1>
+
+        <h2>Page Not Found</h2>
+
+        <p>
+            Looks like you've taken a wrong turn.
+            The page you're looking for doesn't exist or may have been moved.
+        </p>
+
+        <div class="buttons">
+            <a href="/" class="btn primary">
+                Return Home
+            </a>
+
+            <button class="btn secondary" onclick="history.back()">
+                Go Back
+            </button>
+        </div>
+
+        <div class="status">
+            <div class="status-dot"></div>
+            <span>SYSTEM STATUS: OPERATIONAL</span>
+        </div>
+
+        <footer>
+            &copy; <span id="year"></span> Palm Beach Project
+        </footer>
+
+    </main>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>
