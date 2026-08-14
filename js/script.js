@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    // ================================
-    // Current Year
-    // ================================
+    /* ================================
+       Current Year
+    ================================= */
 
     const year = document.getElementById("year");
 
@@ -11,120 +11,166 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // ================================
-    // Page Load Animation
-    // ================================
+    /* ================================
+       Mobile Navigation
+    ================================= */
 
-    document.body.classList.add("loaded");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const navLinks = document.querySelector(".nav-links");
 
+    if (mobileMenu && navLinks) {
 
-    // ================================
-    // Mouse Parallax Effect
-    // ================================
+        mobileMenu.addEventListener("click", () => {
 
-    const grid = document.querySelector(".grid");
-    const glowOne = document.querySelector(".glow-one");
-    const glowTwo = document.querySelector(".glow-two");
-
-    if (window.innerWidth > 700) {
-
-        document.addEventListener("mousemove", (event) => {
-
-            const x = (event.clientX / window.innerWidth - 0.5);
-            const y = (event.clientY / window.innerHeight - 0.5);
-
-            if (grid) {
-                grid.style.transform =
-                    `perspective(500px)
-                     rotateX(${55 + y * 3}deg)
-                     rotateZ(${x * 1.5}deg)`;
-            }
-
-            if (glowOne) {
-                glowOne.style.transform =
-                    `translate(${x * 30}px, ${y * 30}px)`;
-            }
-
-            if (glowTwo) {
-                glowTwo.style.transform =
-                    `translate(${x * -25}px, ${y * -25}px)`;
-            }
+            navLinks.classList.toggle("mobile-open");
 
         });
 
     }
 
 
-    // ================================
-    // Go Back Button
-    // ================================
+    /* ================================
+       Smooth Navigation
+    ================================= */
 
-    const backButton = document.querySelector(".secondary");
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
 
-    if (backButton) {
+        link.addEventListener("click", event => {
 
-        backButton.addEventListener("click", () => {
+            const targetId = link.getAttribute("href");
 
-            if (window.history.length > 1) {
-                window.history.back();
-            } else {
-                window.location.href = "/";
+            if (!targetId || targetId === "#") {
+                return;
             }
 
-        });
+            const target = document.querySelector(targetId);
 
-    }
-
-
-    // ================================
-    // Home Button
-    // ================================
-
-    const homeButton = document.querySelector(".primary");
-
-    if (homeButton) {
-
-        homeButton.addEventListener("click", (event) => {
+            if (!target) {
+                return;
+            }
 
             event.preventDefault();
 
-            homeButton.style.transform = "scale(0.97)";
+            target.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
 
-            setTimeout(() => {
-                window.location.href = "/";
-            }, 120);
+        });
+
+    });
+
+
+    /* ================================
+       Navbar Scroll Effect
+    ================================= */
+
+    const navbar = document.querySelector(".navbar");
+
+    if (navbar) {
+
+        window.addEventListener("scroll", () => {
+
+            if (window.scrollY > 30) {
+
+                navbar.style.background =
+                    "rgba(6,10,17,.92)";
+
+            } else {
+
+                navbar.style.background =
+                    "rgba(6,10,17,.75)";
+
+            }
 
         });
 
     }
 
 
-    // ================================
-    // Keyboard Shortcuts
-    // ================================
+    /* ================================
+       Hero Parallax
+    ================================= */
 
-    document.addEventListener("keydown", (event) => {
+    const grid = document.querySelector(".grid");
 
-        // Press H to return home
-        if (
-            event.key.toLowerCase() === "h" &&
-            !event.ctrlKey &&
-            !event.altKey &&
-            !event.metaKey
-        ) {
-            window.location.href = "/";
+    if (grid && window.innerWidth > 900) {
+
+        document.addEventListener("mousemove", event => {
+
+            const x =
+                event.clientX / window.innerWidth - 0.5;
+
+            const y =
+                event.clientY / window.innerHeight - 0.5;
+
+            grid.style.transform =
+                `perspective(600px)
+                 rotateX(${55 + y * 2}deg)
+                 translate(${x * 8}px, ${y * 8}px)`;
+
+        });
+
+    }
+
+
+    /* ================================
+       Reveal Animation
+    ================================= */
+
+    const revealElements = document.querySelectorAll(
+        ".about-card, .feature-card, .department-card"
+    );
+
+    const observer = new IntersectionObserver(
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("visible");
+
+                    observer.unobserve(entry.target);
+
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.15
         }
+    );
 
-        // Press Escape to go back
-        if (event.key === "Escape") {
 
-            if (window.history.length > 1) {
-                window.history.back();
-            } else {
-                window.location.href = "/";
-            }
+    revealElements.forEach(element => {
 
-        }
+        element.style.opacity = "0";
+        element.style.transform = "translateY(20px)";
+        element.style.transition =
+            "opacity .6s ease, transform .6s ease";
+
+        observer.observe(element);
+
+    });
+
+
+    /* ================================
+       Visible State
+    ================================= */
+
+    document.addEventListener("scroll", () => {
+
+        document
+            .querySelectorAll(".visible")
+            .forEach(element => {
+
+                element.style.opacity = "1";
+                element.style.transform =
+                    "translateY(0)";
+
+            });
 
     });
 
